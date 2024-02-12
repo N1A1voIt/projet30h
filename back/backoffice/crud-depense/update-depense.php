@@ -14,5 +14,6 @@ else{
     $id_cat = $_POST['id_cat'];
     $montant = $_POST['montant'];
     
-    createRecord('30h_depense', ['date' => $date, 'id_cat' => $id_cat, 'montant' => $montant]);}
+    createRecord('30h_depense', ['date' => $date, 'id_cat' => $id_cat, 'montant' => $montant]);
+}
 ?>
