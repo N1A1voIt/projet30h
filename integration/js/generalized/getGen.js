@@ -15,7 +15,12 @@ export function getWithParameters(url, async) {
         xhr.open("GET",url, async);
         xhr.onload = function() {
             if (xhr.status ===  200) {
-                resolve(JSON.parse(xhr.response));
+                if (xhr.responseText !== "") {
+                    resolve(JSON.parse(xhr.response));
+                }else{
+                    console.log("No return from the server but it may be what you truly want!");
+                    resolve(null);
+                }
             } else {
                 reject(new Error(xhr.statusText));
             }

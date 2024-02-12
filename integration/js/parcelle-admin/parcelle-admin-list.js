@@ -1,23 +1,24 @@
 import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const listContainer = document.getElementById("list-container");
 
 var linkToDelete = "parcelle-deleter.php";
-var listParcelle = "list-parcelle.php";
+var listParcelle = "back/backoffice/crud-parcelle/select-parcelle.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
         listContainer.innerHTML = "";
-        listContainer.appendChild(listerParcelles(responseData));
+        displayVariety()
+        listerParcelles(responseData);
     }
 ).catch(
     error => {
-        alert(error)
+        console.log(error)
     }
 )
 function listerParcelles(responseData) {
-    var tab = document.getElementById("")
+    var tab = listContainer;
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
         for (const key in responseData[i]) {
@@ -42,6 +43,24 @@ function createButton(id){
         deleteRow(id);
     });
     return btn;
+}
+function displayVariety() {
+    const variety_field = document.getElementById("tea_variety");
+    getWithParameters("back/select-the.php",true).then(
+        responseData => {
+            for (let i = 0; i < responseData.length; i++) {
+                var opt = document.createElement("option");
+                opt.value = responseData[i]['id_the'];
+                opt.text = responseData[i]['nom_the'];
+                variety_field.appendChild(opt);
+            }
+        }
+
+    ).catch(
+        error => {
+            console.log(error)
+        }
+    )
 }
 function deleteRow(id) {
     var form = new FormData();

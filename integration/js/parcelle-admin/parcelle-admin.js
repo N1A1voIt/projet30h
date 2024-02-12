@@ -1,9 +1,9 @@
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const form = document.getElementById("parcelle-form");
 form.addEventListener("submit",function (event) {
     event.preventDefault();
-    postTo("pathToInsertParcelle.php",form,true).then(
+    postTo("back/backoffice/crud-parcelle/update-parcelle.php",form,true).then(
         responseData => {
             console.log("success");
         }

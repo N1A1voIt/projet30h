@@ -1,5 +1,5 @@
 <?php
-include("function.php");
+include("../../function.php");
 if(isset($_POST['id_parcelle'])){
     $id_parcelle_to_update = $_POST['id_parcelle'];
     $updated_surface = $_POST['updated_surface'];

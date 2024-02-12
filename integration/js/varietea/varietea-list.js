@@ -41,7 +41,7 @@ function listeVarietea(responseData1) {
             " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
             " </button>\n" +
             " <div class=\"dropdown-menu\">\n" +
-            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i]['id_the'])' \n" +
+            " <p class=\"dropdown-item\" onclick='cdeleteRow(responseData[i]['id_the'])' \n" +
             " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
             " >\n" +
             " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +
