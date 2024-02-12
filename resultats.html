@@ -70,7 +70,7 @@
               <div class="tab-content" id="v-pills-tabContent">
 
                 <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                  <form action="#" class="search-property-1">
+                  <form id="search-bar" class="search-property-1">
                     <div class="row no-gutters">
                       <div class="col-md d-flex">
                         <div class="form-group p-4">
@@ -82,7 +82,7 @@
                           <label for="start">Start date</label>
                           <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input id="start" type="text" class="form-control checkin_date" placeholder="Start Date">
+                            <input id="start" name="start-date" type="text" class="form-control checkin_date" placeholder="Start Date">
                           </div>
                         </div>
                       </div>
@@ -91,7 +91,7 @@
                           <label for="end">End date</label>
                           <div class="form-field">
                             <div class="icon"><span class="fa fa-calendar"></span></div>
-                            <input id="end" type="text" class="form-control checkout_date" placeholder="End Date">
+                            <input id="end" type="text" name="end-date"  class="form-control checkout_date" placeholder="End Date">
                           </div>
                         </div>
                       </div>
@@ -189,17 +189,17 @@
           <a href="blog-single.html" class="block-20" style="background-image: url('images/tea_cup.jpg');">
           </a>
           <div class="text">
-            <h3 class="heading"><a href="#">11kg of Cueillette</a></h3>
+            <h3 class="heading"><a href="#" id="cueilli">11kg of Cueillette</a></h3>
             <p>The amount of cueillette that we have gathered in our data</p>
           </div>
         </div>
       </div>
       <div class="col-md-4 d-flex ftco-animate">
         <div class="blog-entry justify-content-end">
-          <a href="blog-single.html" class="block-20" style="background-image: url('images/tea_planta.jpg');">
+          <a href="blog-single.html" class="block-20"  style="background-image: url('images/tea_planta.jpg');">
           </a>
           <div class="text">
-            <h3 class="heading"><a href="#">122kg left</a></h3>
+            <h3 class="heading"><a href="#" id="reste">122kg left</a></h3>
             <p>The amount left in our parcels according to our data.</p>
           </div>
         </div>
@@ -209,7 +209,7 @@
           <a href="blog-single.html" class="block-20" style="background-image: url('images/money.jpg');">
           </a>
           <div class="text">
-            <h3 class="heading"><a href="#">4300ar / kg</a></h3>
+            <h3 class="heading"><a href="#" id="coutRevient">4300ar / kg</a></h3>
             <p>The revenue cost per kg in our data.</p>
           </div>
         </div>
@@ -286,6 +286,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+
+<script type="module" src="integration/js/result-front-office/result-getter.js"></script>
 
 </body>
 </html>
