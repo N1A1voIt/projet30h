@@ -1,5 +1,7 @@
 <?php
-include("function.php");
+include("../../function.php");
 
-$depenseRecords = readRecords('30h_depense');
+$depenseRecords = readRecords('30h_montant_salaire');
+echo json_encode($depenseRecords);
+
 ?>
