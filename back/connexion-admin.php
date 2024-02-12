@@ -1,29 +1,29 @@
 <?php
 include("connexion.php");
-function connexion($adminname, $password) {
+function connexion($username, $password) {
     $hashedPassword = sha1($password); 
 
     $dbh = PDOConnect();
 
-    $stmt = $dbh->prepare("INSERT INTO 30h_admin (nom_admin, mdp_admin) VALUES (:adminname, :password)");
-    $stmt->bindValue(":adminname", $adminname);
+    $stmt = $dbh->prepare("INSERT INTO 30h_admin (nom_user, mdp_user) VALUES (:username, :password)");
+    $stmt->bindValue(":username", $username);
     $stmt->bindValue(":password", $hashedPassword);
     $stmt->execute();
 
     $dbh = null;
 }
-function login($adminname, $password) {
+function login($username, $password) {
     $dbh = PDOConnect();
 
-    $stmt = $dbh->prepare("SELECT * FROM 30h_admin WHERE nom_admin = :adminname");
-    $stmt->bindValue(":adminname", $adminname);
+    $stmt = $dbh->prepare("SELECT * FROM 30h_admin WHERE nom_user = :username");
+    $stmt->bindValue(":username", $username);
     $stmt->execute();
 
-    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($admin && sha1($password) === $admin['mdp_admin']) {
+    if ($user && sha1($password) === $user['mdp_user']) {
         $dbh = null;
-        return $admin;
+        return $user;
     } else {
         $dbh = null;
         return false;
