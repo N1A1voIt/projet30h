@@ -1,9 +1,9 @@
 import {postTo} from "../generalized/postGen.js";
 
-const form = document.getElementById("cueilleur-form");
+const form = document.getElementById("cueillette-form");
 form.addEventListener("submit",function (event) {
     event.preventDefault();
-    postTo("back/backoffice/crud-cueilleur/update-cueuilleur.php",form,true).then(
+    postTo("back/backoffice/crud-cueillette/update-cueuillette.php",form,true).then(
         responseData => {
             console.log("success");
         }
