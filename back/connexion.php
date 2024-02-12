@@ -2,7 +2,7 @@
 function PDOConnect(){
     $user = 'root';
     $pass = 'root';
-    $dsn = 'mysql:host=172.10.0.113;port=3306;dbname=examfinals3';
+    $dsn = 'mysql:host=localhost;port=3306;dbname=examfinals3';
 
     try {
         $dbh = new PDO($dsn, $user, $pass);

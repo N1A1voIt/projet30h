@@ -73,7 +73,10 @@
                     <h4 class="mb-2">Back Office - MLT</h4>
                     <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-                    <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+                    <form id="form-login" class="mb-3" action="index.html" method="POST">
+                        <div id="error">
+
+                        </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Username</label>
                             <input
@@ -131,6 +134,7 @@
 <!-- Page JS -->
 
 <!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script type="module" src="integration/js/login-admin/login.js"></script>
+
 </body>
 </html>

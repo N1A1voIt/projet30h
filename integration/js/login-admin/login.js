@@ -5,12 +5,12 @@ const errorr = document.getElementById("error");
 
 form.addEventListener("submit",function (event) {
     event.preventDefault();
-    postTo("integration/php/login/login.php",form,true).then(
+    postTo("integration/php/login-admin/login.php",form,true).then(
         responseData => {
             if (responseData.retValue === 1){
                 afficherErreur("")
             } else {
-                window.location = "home.html";
+                window.location = "back_variete_the.html";
             }
         }
     ).catch(
