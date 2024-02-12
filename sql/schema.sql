@@ -47,7 +47,8 @@ CREATE TABLE 30h_depense (
 CREATE TABLE 30h_montant_salaire (
     id_montant_salaire INT auto_increment PRIMARY KEY,
     poid FLOAT,
-    montant FLOAT
+    montant FLOAT,
+    date DATE
 );
 
 CREATE TABLE 30h_user (
