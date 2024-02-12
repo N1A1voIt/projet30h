@@ -5,7 +5,7 @@ include("connexion.php");
 
         $dbh = PDOConnect();
 
-        $stmt = $dbh->prepare("INSERT INTO user (nom_user, mdp_user) VALUES (:username, :password)");
+        $stmt = $dbh->prepare("INSERT INTO 30h_user (nom_user, mdp_user) VALUES (:username, :password)");
         $stmt->bindValue(":username", $username);
         $stmt->bindValue(":password", $hashedPassword);
         $stmt->execute();
@@ -15,7 +15,7 @@ include("connexion.php");
     function login($username, $password) {
         $dbh = PDOConnect();
 
-        $stmt = $dbh->prepare("SELECT * FROM user WHERE nom_user = :username");
+        $stmt = $dbh->prepare("SELECT * FROM 30h_user WHERE nom_user = :username");
         $stmt->bindValue(":username", $username);
         $stmt->execute();
 
