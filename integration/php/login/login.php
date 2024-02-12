@@ -4,11 +4,12 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     if (login($username, $password) === false){
-        echo json_encode(1);
+        $val = array("retValue" => 1);
+        echo json_encode($val);
     }else{
         $user = login($username, $password);
         $_SESSION['userInfo'] = array(
-            "idUser" => $user["idUser"]
+            "idUser" => $user["id_admin"]
         );
         echo json_encode(2);
     }
