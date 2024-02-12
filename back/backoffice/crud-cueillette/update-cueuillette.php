@@ -1,5 +1,5 @@
 <?php
-include("function.php");
+include("../../function.php");
 
 $date = $_POST['date'];
 $id_cueuilleur = $_POST['id_cueuilleur'];

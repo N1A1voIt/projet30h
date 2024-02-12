@@ -1,5 +1,5 @@
 <?php
-include("../../function.php");
+include_once("../function.php");
 
 function getPoidsCueillette($id_parcelle, $date_debut, $date_fin) {
     $dbh = PDOConnect();
@@ -55,7 +55,7 @@ function calculerDepenseTotaleEntreDates($date_debut, $date_fin) {
 }
 
 function getRestePoids($id_parcelle, $date_debut, $date_fin) {
-    return calculerRendement($id_parcelle) - getPoidsCueilli($id_parcelle, $date_debut, $date_fin);
+    return calculerRendement($id_parcelle) - getPoidsCueillette($id_parcelle, $date_debut, $date_fin);
 }
 
 function getPoidsCueilletteTotal( $date_debut, $date_fin) {
@@ -83,6 +83,6 @@ function getCoutRevientRendement($date_debut, $date_fin){
 }
 
 function getCoutRevientRecolte($date_debut, $date_fin){
-    return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / getPoidsCueilletteTotal();
+    return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / getPoidsCueilletteTotal($date_debut,$date_fin);
 }
 ?>

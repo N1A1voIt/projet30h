@@ -15,4 +15,5 @@ $ret = array("coutRevientRecolte" => $poids_total,
     "coutRevientRendment" => $poids_total2);
 
 echo json_encode($ret);
+
 ?>

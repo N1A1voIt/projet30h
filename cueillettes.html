@@ -68,18 +68,24 @@
         <section class="ftco-section contact-section ftco-no-pt">
           <div style="margin-top: 50px" class="container">
             <div class="row block-9">
-              <form action="#" class="bg-light p-5 contact-form">
+              <form action="#"  id="form-cueillette" class="bg-light p-5 contact-form">
                 <div class="form-group">
-                  <input id="date" type="text" class="form-control checkin_date" placeholder="Cueillete Date">
+                  <input id="date" type="text" class="form-control checkin_date" name="date" placeholder="Cueillete Date">
                 </div>
                 <div class="form-group">
-                  <input id="cueilleur" type="text" class="form-control" placeholder="Cueilleur">
+                  <label class="col-sm-2 col-form-label" for="cueilleur-field">Cueilleur</label>
+                  <select id="cueilleur-field" name="id_cueuilleur">
+                    <option>Default select</option>
+                  </select>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="parcelle-field">Parcelle</label>
+                  <select id="parcelle-field" name="id_parcelle" class="form-select">
+                    <option>Default select</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <input id="parcelle" type="text" class="form-control" placeholder="Parcelle">
-                </div>
-                <div class="form-group">
-                  <input id="weight" type="text" class="form-control" placeholder="Weight">
+                  <input id="weight" type="text" class="form-control" name="poids" placeholder="Weight">
                 </div>
                 <div class="form-group">
                   <input type="submit" value="Insert" class="btn btn-primary py-3 px-5">
@@ -165,6 +171,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+
+<script type="module" src="integration/js/saisie-cueillete/saisie-cueillete-insert.js"></script>
 
 </body>
 </html>
