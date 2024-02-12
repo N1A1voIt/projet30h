@@ -1,5 +1,5 @@
 <?php
-    include("connexion.php");
+include("fonction-page-resultats.php");
 
 //createRecord('admin', ['nom_admin' => 'Admin1', 'mdp_admin' => 'password']);
 function createRecord($tableName, $data) {

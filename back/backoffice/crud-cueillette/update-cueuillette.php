@@ -1,10 +1,10 @@
 <?php
 include("function.php");
 
-$date = $_POST['updated_date'];
-$id_cueuilleur = $_POST['updated_id_cueuilleur'];
-$id_parcelle = $_POST['updated_id_parcelle'];
-$poids = $_POST['updated_poids'];
+$date = $_POST['date'];
+$id_cueuilleur = $_POST['id_cueuilleur'];
+$id_parcelle = $_POST['id_parcelle'];
+$poids = $_POST['poids'];
 
 if(isset($_POST['id_cueillette'])){
     $id_cueillette_to_update = $_POST['id_cueillette'];
