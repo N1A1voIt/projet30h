@@ -3,7 +3,8 @@ import {postTo} from "../generalized/postGen.js";
 const form = document.getElementById("form-login");
 const body = document.getElementsByTagName("body")[0];
 
-form.addEventListener("submit",function () {
+form.addEventListener("submit",function (event) {
+    event.preventDefault();
     postTo("traitement.php",form,true).then(
         responseData => {
             if (responseData.retValue === 1){
