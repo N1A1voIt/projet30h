@@ -1,10 +1,10 @@
 import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const listContainer = document.getElementById("list-container");
 
 var linkToDelete = "cueilleurs-deleter.php";
-var listParcelle = "list-cueilleurs.php";
+var listParcelle = "back/list-cueilleurs.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
@@ -27,11 +27,22 @@ function listerCueilleurs(responseData) {
                 row.appendChild(col);
             }
         }
-        var del = document.createElement("td");
-        del.appendChild(createButton(responseData[i].id));
-        row.appendChild(del);
-        var update = document.createElement("td");
-        row.appendChild(update);
+        var del_update = "<div class=\"dropdown\">\n" +
+            " <button type=\"button\" class=\"btn p-0 dropdown-toggle hide-arrow\" data-bs-toggle=\"dropdown\">\n" +
+            " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
+            " </button>\n" +
+            " <div class=\"dropdown-menu\">\n" +
+            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i][''])' \n" +
+            " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
+            " >\n" +
+            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +
+            " ><i class=\"bx bx-trash me-1\"></i> Delete</p\n" +
+            " >\n" +
+            " </div>\n" +
+            " </div>"
+        var td = document.createElement("td");
+        td.innerHTML = del_update;
+        row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;

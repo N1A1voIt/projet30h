@@ -1,42 +1,63 @@
 import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const listContainer = document.getElementById("list-container");
 
 var linkToDelete = "parcelle-deleter.php";
-var listParcelle = "list-parcelle.php";
+var listParcelle = "back/select-the.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
         listContainer.innerHTML = "";
-        listContainer.appendChild(listeVarietea(responseData));
+        listeVarietea(responseData);
     }
 ).catch(
     error => {
-        alert(error)
+        console.log(error)
     }
 )
-function listeVarietea(responseData) {
-    var tab = document.getElementById("")
+
+function listeVarietea(responseData1) {
+    var tab = listContainer;
+    var responseData = responseData1;
+
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
-        for (const key in responseData[i]) {
-            if (responseData[i].hasOwnProperty(key)) {
-                var col = document.createElement("td");
-                col.innerHTML = responseData[i][key];
-                row.appendChild(col);
-            }
-        }
-        var del = document.createElement("td");
-        del.appendChild(createButton(responseData[i].id));
-        row.appendChild(del);
-        var update = document.createElement("td");
-        row.appendChild(update);
+        var colThe = document.createElement("td");
+        console.log(responseData[i]['id_the']);
+        colThe.innerHTML = responseData[i].id_the;
+        row.appendChild(colThe);
+        var colOccupation= document.createElement("td");
+        console.log(responseData[i].occupation);
+        colOccupation.innerHTML = responseData[i].occupation;
+        row.appendChild(colOccupation);
+        var colRendement= document.createElement("td");
+        console.log(responseData[i].rendement);
+        colRendement.innerHTML = responseData[i].rendement;
+        row.appendChild(colRendement);
+
+        var del_update = "<div class=\"dropdown\">\n" +
+            " <button type=\"button\" class=\"btn p-0 dropdown-toggle hide-arrow\" data-bs-toggle=\"dropdown\">\n" +
+            " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
+            " </button>\n" +
+            " <div class=\"dropdown-menu\">\n" +
+            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i]['id_the'])' \n" +
+            " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
+            " >\n" +
+            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +
+            " ><i class=\"bx bx-trash me-1\"></i> Delete</p\n" +
+            " >\n" +
+            " </div>\n" +
+            " </div>"
+        var td = document.createElement("td");
+        td.innerHTML = del_update;
+        row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;
 }
-function createButton(id){
+
+function createButton(id) {
     var btn = document.createElement("button");
     btn.addEventListener("click",()=>{
         deleteRow(id);

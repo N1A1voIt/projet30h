@@ -15,7 +15,7 @@ export function getWithParameters(url, async) {
         xhr.open("GET",url, async);
         xhr.onload = function() {
             if (xhr.status ===  200) {
-                resolve(xhr.response);
+                resolve(JSON.parse(xhr.response));
             } else {
                 reject(new Error(xhr.statusText));
             }
