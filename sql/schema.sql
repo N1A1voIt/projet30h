@@ -21,7 +21,7 @@ CREATE TABLE 30h_parcelle (
     id_parcelle INT auto_increment PRIMARY KEY,
     surface FLOAT,
     id_the INT,
-    FOREIGN KEY (id_the) REFERENCES the(id_the)
+    FOREIGN KEY (id_the) REFERENCES 30h_the(id_the)
 );
 
 CREATE TABLE 30h_cueuilleur (
@@ -41,13 +41,14 @@ CREATE TABLE 30h_depense (
     date DATE,
     id_cat INT,
     montant FLOAT,
-    FOREIGN KEY (id_cat) REFERENCES categorie_depense(id_cat_dep)
+    FOREIGN KEY (id_cat) REFERENCES 30h_categorie_depense(id_cat_dep)
 );
 
 CREATE TABLE 30h_montant_salaire (
     id_montant_salaire INT auto_increment PRIMARY KEY,
     poid FLOAT,
-    montant FLOAT
+    montant FLOAT,
+    date DATE
 );
 
 CREATE TABLE 30h_user (
@@ -62,6 +63,6 @@ CREATE TABLE 30h_cueillette (
     id_cueuilleur INT,
     id_parcelle INT,
     poids FLOAT,
-    FOREIGN KEY (id_cueuilleur) REFERENCES cueuilleur(id_cueuilleur),
-    FOREIGN KEY (id_parcelle) REFERENCES parcelle(id_parcelle)
+    FOREIGN KEY (id_cueuilleur) REFERENCES 30h_cueuilleur(id_cueuilleur),
+    FOREIGN KEY (id_parcelle) REFERENCES 30h_parcelle(id_parcelle)
 );
