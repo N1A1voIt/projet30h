@@ -9,6 +9,10 @@ $date_fin = $_POST['date_fin'];
 $poids_total = getCoutRevientRecolte($date_debut, $date_fin);
 
 //cout de revinet par rendement
-$poids_total = getCoutRevientRendement($date_debut, $date_fin);
+$poids_total2 = getCoutRevientRendement($date_debut, $date_fin);
 
+$ret = array("coutRevientRecolte" => $poids_total,
+    "coutRevientRendment" => $poids_total2);
+
+echo json_encode($ret);
 ?>

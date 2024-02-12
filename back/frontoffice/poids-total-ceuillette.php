@@ -7,4 +7,6 @@ $date_fin = $_POST['date_fin'];
 
 $poids_total = getPoidsCueillette($id_parcelle, $date_debut, $date_fin);
 
+echo json_encode(array("poids_total_cueillette" => $poids_total));
+
 ?>
