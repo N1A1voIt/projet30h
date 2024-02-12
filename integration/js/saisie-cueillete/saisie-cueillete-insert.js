@@ -1,8 +1,20 @@
 import {getWithParameters} from "../generalized/getGen";
+import {postTo} from "../generalized/postGen";
 
 const cueilleurField = document.getElementById("cueilleur-field");
 const parcelleField = document.getElementById("parcelle-field");
+const form = document.getElementById("form-cueillette");
 
+fillAll();
+
+form.addEventListener("submit",(event) => {
+    event.preventDefault();
+    var idParcelle = parcelleField.value;
+
+})
+function getParcelleContent(idParcelle){
+    postTo("")
+}
 function fillCueilleur(responseData) {
     for (let i = 0; i < responseData.length; i++) {
         var idCueilleur = responseData[i]["idCueilleur"];
@@ -19,10 +31,10 @@ function fillParcelle(responseData) {
         var option = document.createElement("option");
         option.value = idParcelle;
         option.text = idParcelle;
-        cueilleurField.appendChild(option);
+        parcelleField.appendChild(option);
     }
 }
-function fillAll(responseData){
+function fillAll(){
     getWithParameters("saisie-cueillete-form.php",true).then(
         responseData => {
             var cueilleur = responseData.cueilleur;
