@@ -2,8 +2,8 @@
 include("../../function.php");
 if(isset($_POST['id_parcelle'])){
     $id_parcelle_to_update = $_POST['id_parcelle'];
-    $updated_surface = $_POST['updated_surface'];
-    $updated_id_the = $_POST['updated_id_the'];
+    $updated_surface = $_POST['surface'];
+    $updated_id_the = $_POST['id_the'];
 
     updateRecord('30h_parcelle', ['surface' => $updated_surface, 'id_the' => $updated_id_the], 'id_parcelle = :id_parcelle', ['id_parcelle' => $id_parcelle_to_update]);
 }
