@@ -1,23 +1,24 @@
 import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const listContainer = document.getElementById("list-container");
 
-var linkToDelete = "depenses-deleter.php";
-var listDepenses = "list-depenses.php";
+var linkToDelete = "cueilleurs-deleter.php";
+var listDepenses = "back/backoffice/crud-category-depense/select-category-depense.php";
 
 getWithParameters(listDepenses,true).then(
     responseData => {
         listContainer.innerHTML = "";
-        listContainer.appendChild(listerDepenses(responseData));
+        console.log(responseData)
+        listerDepenses(responseData);
     }
 ).catch(
     error => {
-        alert(error)
+        console.log(error)
     }
 )
 function listerDepenses(responseData) {
-    var tab = document.getElementById("")
+    var tab = listContainer;
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
         for (const key in responseData[i]) {
@@ -27,11 +28,22 @@ function listerDepenses(responseData) {
                 row.appendChild(col);
             }
         }
-        var del = document.createElement("td");
-        del.appendChild(createButton(responseData[i].id));
-        row.appendChild(del);
-        var update = document.createElement("td");
-        row.appendChild(update);
+        var del_update = "<div class=\"dropdown\">\n" +
+            " <button type=\"button\" class=\"btn p-0 dropdown-toggle hide-arrow\" data-bs-toggle=\"dropdown\">\n" +
+            " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
+            " </button>\n" +
+            " <div class=\"dropdown-menu\">\n" +
+            " <p class=\"dropdown-item\" \n" +
+            " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
+            " >\n" +
+            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +
+            " ><i class=\"bx bx-trash me-1\"></i> Delete</p\n" +
+            " >\n" +
+            " </div>\n" +
+            " </div>"
+        var td = document.createElement("td");
+        td.innerHTML = del_update;
+        row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;

@@ -1,9 +1,9 @@
-import {postTo} from "../generalized/postGen";
+import {postTo} from "../generalized/postGen.js";
 
 const form = document.getElementById("depenses-form");
 form.addEventListener("submit",function (event) {
     event.preventDefault();
-    postTo("pathToInsertDepenses.php",form,true).then(
+    postTo("back/backoffice/crud-category-depense/update-category-depense.php",form,true).then(
         responseData => {
             console.log("success");
         }

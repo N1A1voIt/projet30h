@@ -1,5 +1,5 @@
 <?php
-include("function.php");
+include("../../function.php");
 
 if(isset($_POST['id_depense'])){
     $id_depense_to_update = $_POST['id_depense'];
