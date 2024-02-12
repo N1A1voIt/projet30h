@@ -4,20 +4,21 @@ import {postTo} from "../generalized/postGen.js";
 const listContainer = document.getElementById("list-container");
 
 var linkToDelete = "cueilleurs-deleter.php";
-var listParcelle = "back/list-cueilleurs.php";
+var listParcelle = "back/backoffice/crud-cueilleur/select-cueuilleur.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
         listContainer.innerHTML = "";
-        listContainer.appendChild(listerCueilleurs(responseData));
+        console.log(responseData)
+        listerCueilleurs(responseData);
     }
 ).catch(
     error => {
-        alert(error)
+        console.log(error)
     }
 )
 function listerCueilleurs(responseData) {
-    var tab = document.getElementById("")
+    var tab = listContainer
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
         for (const key in responseData[i]) {
@@ -32,7 +33,7 @@ function listerCueilleurs(responseData) {
             " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
             " </button>\n" +
             " <div class=\"dropdown-menu\">\n" +
-            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i][''])' \n" +
+            " <p class=\"dropdown-item\" \n" +
             " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
             " >\n" +
             " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +

@@ -1,5 +1,6 @@
 <?php
-include("function.php");
+include("../../function.php");
 
-$parcelleRecords = readRecords('30h_parcelle');
+$cueilleursRecords = readRecords('30h_cueuilleur');
+echo json_encode($cueilleursRecords);
 ?>
