@@ -16,7 +16,8 @@ else{
     $mallus = $_POST['mallus'];
     $bonus = $_POST['bonus'];
     $daty = $_POST['daty'];
-
+    $newdate = date("Y/m/d", strtotime($daty));
+    $updated_daty = str_replace('/','-', $newdate);
     createRecord('30h_salaire_cueilleur',['minimum' => $minimum, 'mallus' => $mallus,'bonus' => $bonus, 'daty' => $daty]);
 }
 ?>

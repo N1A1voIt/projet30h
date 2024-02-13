@@ -4,6 +4,9 @@ import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 const listContainer = document.getElementById("list-container");
 const form = document.getElementById("parcelle-form");
 
+const surface = document.getElementById("surface");
+const id_the = document.getElementById("the");
+
 var linkToDelete = "back/backoffice/crud-parcelle/delete-parcelle.php";
 var listParcelle = "back/backoffice/crud-parcelle/select-parcelle.php";
 
@@ -55,7 +58,6 @@ function displayVariety() {
                 variety_field.appendChild(opt);
             }
         }
-
     ).catch(
         error => {
             console.log(error)
@@ -136,6 +138,13 @@ function update(id) {
     input.type = "hidden";
     input.value = id;
     input.id = "hidden-id";
-    input.name = "id_cueuilleur";
+    input.name = "id_parcelle";
+    var formulaire = new FormData();
+    formulaire.append("id_parcelle",id);
+  /*  postToFormDataVersion("back/backoffice/crud-parcelle/get-parcelle-by-id.php",formulaire,true).then(
+        responseData => {
+
+        }
+    ).catch()*/
     form.appendChild(input);
 }

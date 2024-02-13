@@ -6,6 +6,11 @@ const form = document.getElementById("salary-depense-form");
 
 var linkToDelete = "back/backoffice/crud-montant-depense/delete-montant-depense.php";
 var listDepenses = "back/backoffice/crud-montant-depense/select-montant-depense.php";
+var linkToGetId = "back/backoffice/crud-montant-depense/select-montant-depense.php";
+
+const weight = document.getElementById("weight");
+const salary = document.getElementById("salary");
+const date = document.getElementById("date");
 
 getWithParameters(listDepenses,true).then(
     responseData => {
@@ -113,5 +118,15 @@ function update(id) {
     input.value = id;
     input.id = "hidden-id";
     input.name = "id_montant_salaire";
+    var formulaire = new FormData();
+    formulaire.append("id_montant_salaire",id);
+    postToFormDataVersion(linkToGetId,formulaire,true).then(
+        responseData =>{
+
+            weight.value = responseData[0]['poids'];
+            salary.value = responseData[0]['montant'];
+            date.value = responseData[0]['date_montant'];
+        }
+    ).catch();
     form.appendChild(input);
 }

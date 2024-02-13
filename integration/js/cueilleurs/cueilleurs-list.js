@@ -4,6 +4,11 @@ import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 const listContainer = document.getElementById("list-container");
 const form = document.getElementById("cueilleur-form");
 
+const name = document.getElementById("name");
+const gender = document.getElementById("gender");
+const birthdate = document.getElementById("birthdate");
+
+const listCueilleursById = "back/backoffice/crud-cueilleur/select-cueuilleur-by-id.php";
 
 var linkToDelete = "back/backoffice/crud-cueilleur/delete-cueuilleur.php";
 var listParcelle = "back/backoffice/crud-cueilleur/select-cueuilleur.php";
@@ -116,5 +121,15 @@ function update(id) {
     input.value = id;
     input.id = "hidden-id";
     input.name = "id_cueuilleur";
+    const formulaire = new FormData();
+    formulaire.append("id_cueuilleur",id);
+    postToFormDataVersion(listCueilleursById,formulaire,true).then(
+        responseData => {
+            console.log(responseData[0].nom);
+            name.value = responseData[0].nom;
+            gender.value = responseData[0]['genre'];
+            birthdate.value = responseData[0]['ddn'];
+        }
+    ).catch()
     form.appendChild(input);
 }

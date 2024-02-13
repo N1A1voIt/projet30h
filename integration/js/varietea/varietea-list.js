@@ -4,8 +4,17 @@ import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 const listContainer = document.getElementById("list-container");
 const form = document.getElementById("variety-form");
 
+const varietyName = document.getElementById("variety-name");
+const occupation = document.getElementById("occupation");
+const rendement_ft = document.getElementById("rendement_ft");
+const price = document.getElementById("price");
+
+
 var linkToDelete = "back/delete-the.php";
 var listParcelle = "back/select-the.php";
+
+
+var linkToVariteaById= "back/"
 
 getWithParameters(listParcelle,true).then(
     responseData => {
@@ -26,7 +35,7 @@ export function listeVarietea(responseData1) {
         var row = document.createElement("tr");
         var colThe = document.createElement("td");
         console.log(responseData[i]['id_the']);
-        colThe.innerHTML = responseData[i].id_the;
+        colThe.innerHTML = responseData[i].nom_the;
         row.appendChild(colThe);
         var colOccupation= document.createElement("td");
         console.log(responseData[i].occupation);
@@ -134,5 +143,17 @@ function update(id) {
     input.type = "hidden";
     input.value = id;
     input.name = "id_the";
+    var formulaire = new FormData();
+    formulaire.append("id_the",id);
+    postToFormDataVersion("back/get-varietea-by-id.php",formulaire,true).then(
+        responseData => {
+            varietyName.value = responseData[0]['nom_the'];
+            occupation.value = responseData[0]['occupation'];
+            rendement_ft.value = responseData[0]['rendement'];
+            price.value = responseData[0]['price'];
+        }
+    ).catch(
+
+    )
     form.appendChild(input);
 }

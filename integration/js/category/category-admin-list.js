@@ -6,7 +6,7 @@ const form = document.getElementById("depenses-form");
 
 var linkToDelete = "back/backoffice/crud-categorie-depense/delete-cat-dep.php";
 var listCategorieDepense = "back/backoffice/crud-categorie-depense/select-cat-dep.php";
-var listCategorieDepenseById = "back/backoffice/crud-categorie-depense/get-by-id-cat.php";
+var listCategorieDepenseById = "back/backoffice/crud-categorie-depense/get-by-id-cat-dep.php";
 
 
 const depense_category = document.getElementById("depense_category");
@@ -118,6 +118,7 @@ function update(id) {
     formulaire.append("id_cat_dep",id);
     postToFormDataVersion(listCategorieDepenseById,formulaire,true).then(
         responseData => {
+            console.log(responseData[0].nom_cat_dep);
             depense_category.value = responseData[0].nom_cat_dep;
         }
     ).catch()

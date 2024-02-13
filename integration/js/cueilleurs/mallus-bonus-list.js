@@ -4,6 +4,11 @@ import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 const listContainer = document.getElementById("list-container-mallus-bonus");
 const form = document.getElementById("mallus-form");
 
+const min_weight = document.getElementById("min_weight");
+const bonus = document.getElementById("bonus");
+const mallus = document.getElementById("mallus");
+const date = document.getElementById("date");
+
 
 var linkToDelete = "back/backoffice/crud-salaire-cueilleur/delete-salaire-cueuilleur.php";
 var listParcelle = "back/backoffice/crud-salaire-cueilleur/select-salaire-cueuilleur.php";
@@ -113,5 +118,17 @@ function update(id) {
     input.value = id;
     input.id = "hidden-id";
     input.name = "id_salaire_cueilleur";
+    var formulaire = new FormData();
+    formulaire.append("id_salaire_cueilleur",id);
+    postToFormDataVersion("back/backoffice/crud-salaire-cueilleur/select-salaire-cueilleur-by-id.php",formulaire,true).then(
+        responseData => {
+            min_weight.value = responseData[0]['minimum'];
+            mallus.value = responseData[0]['mallus'];
+            bonus.value = responseData[0]['bonus'];
+            date.value = responseData[0]['daty'];
+        }
+    ).catch(
+
+    )
     form.appendChild(input);
 }
