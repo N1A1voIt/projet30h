@@ -104,6 +104,9 @@ function deleteRow(id) {
     )
 }
 
+function loadForm(id) {
+
+}
 function update(id) {
     if (document.getElementById("hidden-id") != null){
         document.getElementById("hidden-id").remove();
