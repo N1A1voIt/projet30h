@@ -66,3 +66,23 @@ CREATE TABLE 30h_cueillette (
     FOREIGN KEY (id_cueuilleur) REFERENCES 30h_cueuilleur(id_cueuilleur),
     FOREIGN KEY (id_parcelle) REFERENCES 30h_parcelle(id_parcelle)
 );
+
+CREATE TABLE 30h_saison (
+    id_saison INT auto_increment PRIMARY KEY,
+    nom_saison VARCHAR(40),
+    valide BOOLEAN
+);
+
+INSERT INTO 30h_saison (nom_saison, valide) VALUES 
+('Janvier', FALSE),
+('Février', FALSE),
+('Mars', FALSE),
+('Avril', FALSE),
+('Mai', FALSE),
+('Juin', FALSE),
+('Juillet', FALSE),
+('Août', FALSE),
+('Septembre', FALSE),
+('Octobre', FALSE),
+('Novembre', FALSE),
+('Décembre', FALSE);
