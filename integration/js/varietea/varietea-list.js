@@ -18,7 +18,7 @@ getWithParameters(listParcelle,true).then(
     }
 )
 
-function listeVarietea(responseData1) {
+export function listeVarietea(responseData1) {
     var tab = listContainer;
     var responseData = responseData1;
 
@@ -36,7 +36,9 @@ function listeVarietea(responseData1) {
         console.log(responseData[i].rendement);
         colRendement.innerHTML = responseData[i].rendement;
         row.appendChild(colRendement);
-
+        var colPrice= document.createElement("td");
+        colPrice.innerHTML = responseData[i].price;
+        row.appendChild(colPrice);
         var del_update = createEditDeleteButtons(responseData[i].id_the);
 
         var td = document.createElement("td");
