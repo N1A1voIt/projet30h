@@ -49,7 +49,7 @@ CREATE TABLE 30h_montant_salaire (
     id_montant_salaire INT auto_increment PRIMARY KEY,
     poids FLOAT,
     montant FLOAT,
-    date DATE
+    date_montant_salaire DATE
 );
 
 CREATE TABLE 30h_user (
@@ -73,20 +73,6 @@ CREATE TABLE 30h_saison (
     nom_saison VARCHAR(40),
     valide BOOLEAN
 );
-
-INSERT INTO 30h_saison (nom_saison, valide) VALUES 
-('Janvier', FALSE),
-('Février', FALSE),
-('Mars', FALSE),
-('Avril', FALSE),
-('Mai', FALSE),
-('Juin', FALSE),
-('Juillet', FALSE),
-('Août', FALSE),
-('Septembre', FALSE),
-('Octobre', FALSE),
-('Novembre', FALSE),
-('Décembre', FALSE);
 
 CREATE TABLE 30h_salaire_cueilleur(
     id_salaire_cueilleur INT auto_increment PRIMARY KEY,
