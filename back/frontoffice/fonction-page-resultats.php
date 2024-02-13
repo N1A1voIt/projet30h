@@ -1,5 +1,5 @@
 <?php
-//require_once ("../function.php");
+require_once ("../function.php");
 require_once ("../connexion.php");
 function changeFormat($date){
     $newdate = date("Y/m/d", strtotime($date));
@@ -14,7 +14,7 @@ function getPoidsCueillette($id_parcelle, $date_debut, $date_fin) {
     $stmt->bindValue(":date_debut", changeFormat($date_debut), PDO::PARAM_STR);
     $stmt->bindValue(":date_fin", changeFormat($date_fin), PDO::PARAM_STR);
     $stmt->execute();
-    
+
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $poids_total = $result['poids_total'];
 
