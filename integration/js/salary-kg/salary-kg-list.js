@@ -86,10 +86,10 @@ function deleteRow(id) {
         responseData => {
             console.log("deleted");
             listContainer.innerHTML = "";
-            getWithParameters(listParcelle,true).then(
+            getWithParameters(listDepenses,true).then(
                 responseData => {
                     listContainer.innerHTML = "";
-                    listeVarietea(responseData);
+                    listerDepenses(responseData);
                 }
             ).catch(
                 error => {
@@ -105,9 +105,13 @@ function deleteRow(id) {
 }
 
 function update(id) {
+    if (document.getElementById("hidden-id") != null){
+        document.getElementById("hidden-id").remove();
+    }
     var input = document.createElement("input");
     input.type = "hidden";
     input.value = id;
+    input.id = "hidden-id";
     input.name = "id_montant_salaire";
     form.appendChild(input);
 }

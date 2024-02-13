@@ -18,7 +18,7 @@ getWithParameters(listParcelle,true).then(
         console.log(error)
     }
 )
-function listerParcelles(responseData) {
+export function listerParcelles(responseData) {
     var tab = listContainer;
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
@@ -129,9 +129,13 @@ function deleteRow(id) {
 }
 
 function update(id) {
+    if (document.getElementById("hidden-id") != null){
+        document.getElementById("hidden-id").remove();
+    }
     var input = document.createElement("input");
     input.type = "hidden";
     input.value = id;
+    input.id = "hidden-id";
     input.name = "id_cueuilleur";
     form.appendChild(input);
 }

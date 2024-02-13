@@ -2,25 +2,24 @@ import {getWithParameters} from "../generalized/get-gen.js";
 import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 
 const listContainer = document.getElementById("list-container");
-const form = document.getElementById("cueilleur-form");
+const form = document.getElementById("category");
 
-
-var linkToDelete = "back/backoffice/crud-cueilleur/delete-cueuilleur.php";
-var listParcelle = "back/backoffice/crud-cueilleur/select-cueuilleur.php";
+var linkToDelete = "back/backoffice/crud-category/delete-category.php";
+var listParcelle = "back/backoffice/crud-category/select-category.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
         listContainer.innerHTML = "";
-        console.log(responseData)
-        listerCueilleurs(responseData);
+        displayVariety()
+        listerParcelles(responseData);
     }
 ).catch(
     error => {
         console.log(error)
     }
 )
-export function listerCueilleurs(responseData) {
-    var tab = listContainer
+export function listerParcelles(responseData) {
+    var tab = listContainer;
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");
         for (const key in responseData[i]) {
@@ -30,13 +29,38 @@ export function listerCueilleurs(responseData) {
                 row.appendChild(col);
             }
         }
-        var del_update = createEditDeleteButtons(responseData[i]['id_cueuilleur'])
+        var del_edit = createEditDeleteButtons(responseData[i]['id_category']);
         var td = document.createElement("td");
-        td.appendChild(del_update);
+        td.appendChild(del_edit);
         row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;
+}
+function createButton(id){
+    var btn = document.createElement("button");
+    btn.addEventListener("click",()=>{
+        deleteRow(id);
+    });
+    return btn;
+}
+function displayVariety() {
+    const variety_field = document.getElementById("tea_variety");
+    getWithParameters("back/select-the.php",true).then(
+        responseData => {
+            for (let i = 0; i < responseData.length; i++) {
+                var opt = document.createElement("option");
+                opt.value = responseData[i]['id_the'];
+                opt.text = responseData[i]['nom_the'];
+                variety_field.appendChild(opt);
+            }
+        }
+
+    ).catch(
+        error => {
+            console.log(error)
+        }
+    )
 }
 
 function createEditDeleteButtons(id) {
@@ -81,7 +105,7 @@ function createEditDeleteButtons(id) {
 
 function deleteRow(id) {
     var form = new FormData();
-    form.append("id_cueuilleur",id);
+    form.append("id_category",id);
     postToFormDataVersion(linkToDelete,form,true).then(
         responseData => {
             console.log("deleted");
