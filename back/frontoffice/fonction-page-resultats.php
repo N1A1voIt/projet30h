@@ -1,13 +1,17 @@
 <?php
 include_once("../function.php");
-
+function changeFormat($date){
+    $newdate = date("Y/m/d", strtotime($date));
+    $daty = str_replace('/','-', $newdate);
+    return $daty;
+}
 function getPoidsCueillette($id_parcelle, $date_debut, $date_fin) {
     $dbh = PDOConnect();
 
     $stmt = $dbh->prepare("SELECT COALESCE(SUM(poids), 0) AS poids_total FROM 30h_cueillette WHERE id_parcelle = :id_parcelle AND date BETWEEN :date_debut AND :date_fin");
     $stmt->bindValue(":id_parcelle", $id_parcelle, PDO::PARAM_INT);
-    $stmt->bindValue(":date_debut", $date_debut, PDO::PARAM_STR);
-    $stmt->bindValue(":date_fin", $date_fin, PDO::PARAM_STR);
+    $stmt->bindValue(":date_debut", changeFormat($date_debut), PDO::PARAM_STR);
+    $stmt->bindValue(":date_fin", changeFormat($date_fin), PDO::PARAM_STR);
     $stmt->execute();
     
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,8 +46,8 @@ function calculerDepenseTotaleEntreDates($date_debut, $date_fin) {
 
     // Sélectionnez la somme des montants de dépenses entre les dates spécifiées
     $stmt = $dbh->prepare("SELECT COALESCE(SUM(montant), 0) AS depense_totale FROM 30h_depense WHERE date BETWEEN :date_debut AND :date_fin");
-    $stmt->bindValue(":date_debut", $date_debut, PDO::PARAM_STR);
-    $stmt->bindValue(":date_fin", $date_fin, PDO::PARAM_STR);
+    $stmt->bindValue(":date_debut", changeFormat($date_debut), PDO::PARAM_STR);
+    $stmt->bindValue(":date_fin", changeFormat($date_fin), PDO::PARAM_STR);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
