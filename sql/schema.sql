@@ -59,6 +59,8 @@ CREATE TABLE 30h_user (
     nom_user VARCHAR(40),
     mdp_user VARCHAR(255)
 );
+insert into 30h_user values(default,'fits',sha1('123'));
+insert into 30h_admin values(default,'fits',sha1('123'));
 
 CREATE TABLE 30h_cueillette (
     id_cueillette INT auto_increment PRIMARY KEY,
