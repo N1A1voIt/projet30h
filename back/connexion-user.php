@@ -38,7 +38,7 @@ if (login($usern, $password) === false){
 }else{
     $user = login($usern, $password);
     $_SESSION['userInfo'] = array(
-        "idUser" => $user["id_admin"]
+        "idUser" => $user["id_user"]
     );
     echo json_encode(2);
 }

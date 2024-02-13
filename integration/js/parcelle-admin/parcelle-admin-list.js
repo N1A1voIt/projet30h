@@ -92,7 +92,7 @@ function createEditDeleteButtons(id) {
     divDrop.appendChild(editButton);
     var deleteButton = document.createElement("p");
     deleteButton.classList.add("dropdown-item");
-    deleteButton.innerHTML = "<i class=\"bx bx-delete-alt me-1\"></i> Delete";
+    deleteButton.innerHTML = "<i class=\"bx bx-trash-alt me-1\"></i> Delete";
     deleteButton.addEventListener('click', function() {
         deleteRow(id);
     });
