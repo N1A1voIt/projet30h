@@ -1,7 +1,7 @@
 <?php
 function PDOConnect(){
     $user = 'root';
-    $pass = '';
+    $pass = 'root';
     $dsn = 'mysql:host=localhost;port=3306;dbname=examfinals3';
 
     try {
