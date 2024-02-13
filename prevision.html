@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MLT - Cueillettes</title>
+  <title>MLT - Results</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,71 +34,119 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
-        <li class="nav-item active"><a href="cueillettes.html" class="nav-link">Cueillettes</a></li>
+        <li class="nav-item"><a href="cueillettes.html" class="nav-link">Cueillettes</a></li>
         <li class="nav-item"><a href="depenses.html" class="nav-link">Depenses</a></li>
         <li class="nav-item"><a href="payment.html" class="nav-link">Cueilleurs payment</a></li>
         <li class="nav-item"><a href="resultats.html" class="nav-link">Results</a></li>
-        <li class="nav-item"><a href="prevision.html" class="nav-link">Prevision</a></li>
+        <li class="nav-item active"><a href="prevision.html" class="nav-link">Prevision</a></li>
         <li class="nav-item"><a href="index.html" class="nav-link">Log out</a></li>
       </ul>
     </div>
   </div>
 </nav>
 <!-- END nav -->
-
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/tea_plant.jpg');">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/tea_planta.jpg');">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
-        <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home <i class="fa fa-chevron-right"></i> </a><a href="cueillettes.html">Cueillettes <i class="fa fa-chevron-right"></i> </a></span></p>
-        <h1 class="mb-0 bread">Cueillettes</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home <i class="fa fa-chevron-right"></i></a><a href="prevision.html"> Prevision <i class="fa fa-chevron-right"></i></a></span></p>
+        <h1 class="mb-0 bread">Prevision</h1>
       </div>
     </div>
   </div>
 </section>
-
-<section class="ftco-section services-section">
+<section style="margin-top: 55px" class="ftco-section ftco-no-pb ftco-no-pt">
   <div class="container">
-    <div class="row d-flex">
-      <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
-        <div class="w-100">
-          <span class="subheading">Welcome to Mada Luxury Tea</span>
-          <h2 class="mb-4">Let us know about a recent cueillette</h2>
-        </div>
-      </div>
-      <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
-        <section class="ftco-section contact-section ftco-no-pt">
-          <div style="margin-top: 50px" class="container">
-            <div class="row block-9">
-              <form action="#" class="bg-light p-5 contact-form">
-                <div class="form-group">
-                  <input id="date" type="text" class="form-control checkin_date" placeholder="Cueillete Date">
-                </div>
-                <div class="form-group">
-                  <input id="cueilleur" type="text" class="form-control" placeholder="Cueilleur">
-                </div>
-                <div class="form-group">
-                  <input id="parcelle" type="text" class="form-control" placeholder="Parcelle">
-                </div>
-                <div class="form-group">
-                  <input id="weight" type="text" class="form-control" placeholder="Weight">
-                </div>
-                <div class="form-group">
-                  <input type="submit" value="Insert" class="btn btn-primary py-3 px-5">
-                </div>
-              </form>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="ftco-search d-flex justify-content-center">
+          <div class="row">
+            <div class="col-md-12 nav-link-wrap">
+              <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Search</a>
 
+              </div>
+            </div>
+            <div class="col-md-12 tab-wrap">
+
+              <div class="tab-content" id="v-pills-tabContent">
+
+                <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
+                  <form action="#" class="search-property-1">
+                    <div class="row no-gutters">
+                      <div class="col-md d-flex">
+                        <div class="form-group p-4">
+                          <a>Find the prevision for a date </a>
+                        </div>
+                      </div>
+                      <div class="col-md d-flex">
+                        <div class="form-group p-4">
+                          <label for="start">Date</label>
+                          <div class="form-field">
+                            <div class="icon"><span class="fa fa-calendar"></span></div>
+                            <input id="start" type="text" class="form-control checkin_date" placeholder="Date" name="date">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md d-flex">
+                        <div class="form-group d-flex w-100 border-0">
+                          <div class="form-field w-100 align-items-center d-flex">
+                            <input type="submit" value="Search" class="align-self-stretch form-control btn btn-primary">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   </div>
+</section>
+<section class="ftco-section">
+  <div class="container">
+    <h3>Total rest weight: 300kg </h3>
+    <h3>Value: 1000000ar</h3>
+    <div class="card">
+      <div class="table-responsive text-nowrap">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Parcel Number</th>
+            <th>Surface in ha</th>
+            <th>Surface in ft</th>
+            <th>Rest weight</th>
+          </tr>
+          </thead>
+          <tbody class="table-border-bottom-0">
+          <tr>
+            <td>1</td>
+            <td>30</td>
+            <td>200</td>
+            <td>100kg</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>30</td>
+            <td>200</td>
+            <td>100kg</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>30</td>
+            <td>200</td>
+            <td>100kg</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </section>
-
-
 
 <section class="ftco-intro ftco-section ftco-no-pt">
   <div class="container">
