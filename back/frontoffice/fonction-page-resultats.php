@@ -1,5 +1,6 @@
 <?php
-include_once("../function.php");
+//require_once ("../function.php");
+require_once ("../connexion.php");
 function changeFormat($date){
     $newdate = date("Y/m/d", strtotime($date));
     $daty = str_replace('/','-', $newdate);
