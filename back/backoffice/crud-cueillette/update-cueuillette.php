@@ -1,6 +1,6 @@
 <?php
 include("../../function.php");
-include("../../frontoffice/function.php");
+include("../../frontoffice/fonction-page-resultats.php");
 
 function extraireMois($date) {
     $daty = str_replace('/','-', $date);
