@@ -2,13 +2,19 @@
 <?php
 include_once("../../connexion.php");
 
+
+function changeFormat($date){
+    $newdate = date("Y/m/d", strtotime($date));
+    $daty = str_replace('/','-', $newdate);
+    return $daty;
+}
 function getPoidsTotalParCueilleur($id_cueuilleur, $date) {
     $dbh = PDOConnect();
 
     $stmt = $dbh->prepare("SELECT COALESCE(SUM(poids), 0) AS poids_total FROM 30h_cueillette 
                           WHERE id_cueuilleur = :id_cueuilleur AND date = :date");
     $stmt->bindValue(":id_cueuilleur", $id_cueuilleur, PDO::PARAM_INT);
-    $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+    $stmt->bindValue(":date", changeFormat($date), PDO::PARAM_STR);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -43,7 +49,7 @@ function getTableauValeurs($id_cueuilleur, $date) {
     $montantProche = getPoidsMontantProche();
 
     $stmt = $dbh->prepare("SELECT minimum, bonus, malus FROM 30h_salaire_cueilleur WHERE daty = :date");
-    $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+    $stmt->bindValue(":date", changeFormat($date), PDO::PARAM_STR);
     $stmt->execute();
     $salaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -73,6 +79,31 @@ function getTableauValeurs($id_cueuilleur, $date) {
 
     return $resultArray;
 }
+function getTableauValeursEntreDeuxDates($id_cueuilleur, $dateDebut, $dateFin) {
+    $dbh = PDOConnect();
+
+    $sommeValeurs = 0;
+
+    $currentDate = $dateDebut;
+    while ($currentDate <= $dateFin) {
+        $tableauValeurs = getTableauValeurs($id_cueuilleur, $currentDate);
+        $sommeValeurs += $tableauValeurs['valeurs'];
+
+        $currentDate = date('Y-m-d', strtotime($currentDate . ' + 1 day'));
+    }
+
+    $tableauValeurs = getTableauValeurs($id_cueuilleur, $currentDate);
+    $resultArray = array(
+        'date' => $tableauValeurs['date'],
+        'id_cueuilleur' => $id_cueuilleur,
+        'bonus' => $tableauValeurs['bonus'],
+        'malus' => $tableauValeurs['malus'],
+        'valeurs' => $sommeValeurs
+    );
+    $dbh = null;
+    return $resultArray;
+}
+
 function getTableauValeursPourTousCueilleurs($date) {
     $dbh = PDOConnect();
 
@@ -91,5 +122,25 @@ function getTableauValeursPourTousCueilleurs($date) {
 
     return $tableauxValeursPourTousCueilleurs;
 }
+
+function getTableauValeursPourTousCueilleursEntre2Dates($dateDebut, $dateFin) {
+    $dbh = PDOConnect();
+
+    $stmt = $dbh->prepare("SELECT DISTINCT id_cueuilleur FROM 30h_cueillette");
+    $stmt->execute();
+    $idCueilleurs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    $tableauxValeursPourTousCueilleurs = array();
+
+    foreach ($idCueilleurs as $id_cueuilleur) {
+        $tableauValeurs = getTableauValeursEntreDeuxDates($id_cueuilleur, $dateDebut, $dateFin);
+        $tableauxValeursPourTousCueilleurs[] = $tableauValeurs;
+    }
+
+    $dbh = null;
+
+    return $tableauxValeursPourTousCueilleurs;
+}
+
 
 ?>
