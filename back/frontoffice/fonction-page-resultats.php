@@ -109,7 +109,6 @@ function getCoutRevientRecolte($date_debut, $date_fin){
 
 function getBenefice($date_debut, $date_fin){
     $dbh = PDOConnect();
-
     $stmt = $dbh->prepare("SELECT price FROM 30h_the
                           ORDER BY id_the DESC
                           LIMIT 1");
