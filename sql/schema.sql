@@ -86,3 +86,4 @@ INSERT INTO 30h_saison (nom_saison, valide) VALUES
 ('Octobre', FALSE),
 ('Novembre', FALSE),
 ('Décembre', FALSE);
+
