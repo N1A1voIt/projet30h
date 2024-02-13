@@ -1,6 +1,17 @@
 <?php
 include("../../function.php");
 
+readRecords('30h_saison');
+function debutDuMoisParMois($mois) {
+    if ($mois < 1 || $mois > 12) {
+        return "Mois invalide";
+    }
+
+    $dateDebut = date("Y-m-01", mktime(0, 0, 0, $mois, 1, date("Y")));
+
+    return $dateDebut;
+}
+
 $date = $_POST['date'];
 $id_cueuilleur = $_POST['id_cueuilleur'];
 $id_parcelle = $_POST['id_parcelle'];
