@@ -1,9 +1,10 @@
-import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen.js";
+import {getWithParameters} from "../generalized/get-gen.js";
+import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 
 const listContainer = document.getElementById("list-container");
+const form = document.getElementById("variety-form");
 
-var linkToDelete = "parcelle-deleter.php";
+var linkToDelete = "back/delete-the.php";
 var listParcelle = "back/select-the.php";
 
 getWithParameters(listParcelle,true).then(
@@ -36,45 +37,82 @@ function listeVarietea(responseData1) {
         colRendement.innerHTML = responseData[i].rendement;
         row.appendChild(colRendement);
 
-        var del_update = "<div class=\"dropdown\">\n" +
-            " <button type=\"button\" class=\"btn p-0 dropdown-toggle hide-arrow\" data-bs-toggle=\"dropdown\">\n" +
-            " <i class=\"bx bx-dots-vertical-rounded\"></i>\n" +
-            " </button>\n" +
-            " <div class=\"dropdown-menu\">\n" +
-            " <p class=\"dropdown-item\" onclick='cdeleteRow(responseData[i]['id_the'])' \n" +
-            " ><i class=\"bx bx-edit-alt me-1\"></i> Edit</p\n" +
-            " >\n" +
-            " <p class=\"dropdown-item\" onclick='deleteRow(responseData[i].id_the)'\n" +
-            " ><i class=\"bx bx-trash me-1\"></i> Delete</p\n" +
-            " >\n" +
-            " </div>\n" +
-            " </div>"
+        var del_update = createEditDeleteButtons(responseData[i].id_the);
+
         var td = document.createElement("td");
-        td.innerHTML = del_update;
+        td.appendChild(del_update);
         row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;
 }
 
-function createButton(id) {
-    var btn = document.createElement("button");
-    btn.addEventListener("click",()=>{
+/*function createEditDeleteButtons(id) {
+    return `<div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                    <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <p class="dropdown-item" onclick='deleteRow(${id})'>
+                        <i class="bx bx-edit-alt me-1"></i> Edit
+                    </p>
+                    <p class="dropdown-item" onclick='deleteRow(${id})'>
+                        <i class="bx bx-trash me-1"></i> Delete
+                    </p>
+                </div>
+            </div>`;
+}*/
+function createEditDeleteButtons(id) {
+    var div = document.createElement("div");
+    div.classList.add("dropdown");
+    var button = document.createElement('button');
+
+    // Set the attributes and classes
+    button.setAttribute('type', 'button');
+    button.classList.add('btn', 'p-0', 'dropdown-toggle', 'hide-arrow');
+    button.setAttribute('data-bs-toggle', 'dropdown');
+    var icon = document.createElement('i');
+    icon.classList.add('bx', 'bx-dots-vertical-rounded');
+
+    // Append the icon to the button
+    button.appendChild(icon);
+    div.appendChild(button);
+
+    var divDrop = document.createElement("div");
+    divDrop.classList.add("dropdown-menu");
+
+    // Other setup code...
+    var editButton = document.createElement("p");
+    editButton.classList.add("dropdown-item");
+    editButton.innerHTML = "<i class=\"bx bx-edit-alt me-1\"></i> Edit";
+    editButton.addEventListener('click', function() {
+        update(id);
+    });
+    divDrop.appendChild(editButton);
+    var deleteButton = document.createElement("p");
+    deleteButton.classList.add("dropdown-item");
+    deleteButton.innerHTML = "<i class=\"bx bx-delete-alt me-1\"></i> Delete";
+    deleteButton.addEventListener('click', function() {
         deleteRow(id);
     });
-    return btn;
+    divDrop.appendChild(deleteButton);
+    div.appendChild(divDrop);
+    // Repeat for delete button
+    return div;
 }
+
+
 function deleteRow(id) {
     var form = new FormData();
-    form.append("idRow",id);
-    postTo(linkToDelete,form,true).then(
+    form.append("id_the",id);
+    postToFormDataVersion(linkToDelete,form,true).then(
         responseData => {
             console.log("deleted");
             listContainer.innerHTML = "";
             getWithParameters(listParcelle,true).then(
                 responseData => {
                     listContainer.innerHTML = "";
-                    listContainer.appendChild(listeVarietea(responseData));
+                    listeVarietea(responseData);
                 }
             ).catch(
                 error => {
@@ -87,4 +125,12 @@ function deleteRow(id) {
             alert(error);
         }
     )
+}
+
+function update(id) {
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.value = id;
+    input.name = "id_the";
+    form.appendChild(input);
 }

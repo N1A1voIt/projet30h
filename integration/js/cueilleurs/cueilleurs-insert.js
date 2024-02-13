@@ -1,4 +1,4 @@
-import {postTo} from "../generalized/postGen.js";
+import {postTo} from "../generalized/post-gen.js";
 
 const form = document.getElementById("cueilleur-form");
 form.addEventListener("submit",function (event) {

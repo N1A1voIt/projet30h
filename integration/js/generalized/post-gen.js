@@ -1,4 +1,4 @@
-import {getXhr} from "./detXhr.js";
+import {getXhr} from "./det-xhr.js";
 
 function checkStatus(xhr, resolve, reject) {
     if (xhr.status === 200) {

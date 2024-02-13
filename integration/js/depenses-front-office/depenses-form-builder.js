@@ -1,4 +1,4 @@
-import {getWithParameters} from "../generalized/getGen.js";
+import {getWithParameters} from "../generalized/get-gen.js";
 
 const category_selector = document.getElementById("category");
 getWithParameters("category-getter.php",true).then(

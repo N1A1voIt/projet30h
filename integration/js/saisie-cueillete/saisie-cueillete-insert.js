@@ -1,5 +1,5 @@
-import {getWithParameters} from "../generalized/getGen.js";
-import {postTo, postToFormDataVersion} from "../generalized/postGen.js";
+import {getWithParameters} from "../generalized/get-gen.js";
+import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 
 const cueilleurField = document.getElementById("cueilleur-field");
 const parcelleField = document.getElementById("parcelle-field");

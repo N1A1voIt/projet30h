@@ -1,9 +1,10 @@
-import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen.js";
+import {getWithParameters} from "../generalized/get-gen.js";
+import {postTo, postToFormDataVersion} from "../generalized/post-gen.js";
 
 const listContainer = document.getElementById("list-container");
+const form = document.getElementById("parcelle-form");
 
-var linkToDelete = "parcelle-deleter.php";
+var linkToDelete = "back/backoffice/crud-parcelle/delete-parcelle.php";
 var listParcelle = "back/backoffice/crud-parcelle/select-parcelle.php";
 
 getWithParameters(listParcelle,true).then(
@@ -28,11 +29,10 @@ function listerParcelles(responseData) {
                 row.appendChild(col);
             }
         }
-        var del = document.createElement("td");
-        del.appendChild(createButton(responseData[i].id));
-        row.appendChild(del);
-        var update = document.createElement("td");
-        row.appendChild(update);
+        var del_edit = createEditDeleteButtons(responseData[i]['id_parcelle']);
+        var td = document.createElement("td");
+        td.appendChild(del_edit);
+        row.appendChild(td);
         tab.appendChild(row);
     }
     return tab;
@@ -62,17 +62,58 @@ function displayVariety() {
         }
     )
 }
+
+function createEditDeleteButtons(id) {
+    var div = document.createElement("div");
+    div.classList.add("dropdown");
+    var button = document.createElement('button');
+
+    // Set the attributes and classes
+    button.setAttribute('type', 'button');
+    button.classList.add('btn', 'p-0', 'dropdown-toggle', 'hide-arrow');
+    button.setAttribute('data-bs-toggle', 'dropdown');
+    var icon = document.createElement('i');
+    icon.classList.add('bx', 'bx-dots-vertical-rounded');
+
+    // Append the icon to the button
+    button.appendChild(icon);
+    div.appendChild(button);
+
+    var divDrop = document.createElement("div");
+    divDrop.classList.add("dropdown-menu");
+
+    // Other setup code...
+    var editButton = document.createElement("p");
+    editButton.classList.add("dropdown-item");
+    editButton.innerHTML = "<i class=\"bx bx-edit-alt me-1\"></i> Edit";
+    editButton.addEventListener('click', function() {
+        update(id);
+    });
+    divDrop.appendChild(editButton);
+    var deleteButton = document.createElement("p");
+    deleteButton.classList.add("dropdown-item");
+    deleteButton.innerHTML = "<i class=\"bx bx-delete-alt me-1\"></i> Delete";
+    deleteButton.addEventListener('click', function() {
+        deleteRow(id);
+    });
+    divDrop.appendChild(deleteButton);
+    div.appendChild(divDrop);
+    // Repeat for delete button
+    return div;
+}
+
+
 function deleteRow(id) {
     var form = new FormData();
-    form.append("idRow",id);
-    postTo(linkToDelete,form,true).then(
+    form.append("id_parcelle",id);
+    postToFormDataVersion(linkToDelete,form,true).then(
         responseData => {
             console.log("deleted");
             listContainer.innerHTML = "";
             getWithParameters(listParcelle,true).then(
                 responseData => {
                     listContainer.innerHTML = "";
-                    listContainer.appendChild(listerParcelles(responseData));
+                    listeVarietea(responseData);
                 }
             ).catch(
                 error => {
@@ -85,4 +126,12 @@ function deleteRow(id) {
             alert(error);
         }
     )
+}
+
+function update(id) {
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.value = id;
+    input.name = "id_cueuilleur";
+    form.appendChild(input);
 }

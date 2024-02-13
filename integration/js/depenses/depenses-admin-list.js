@@ -1,5 +1,5 @@
-import {getWithParameters} from "../generalized/getGen.js";
-import {postTo} from "../generalized/postGen.js";
+import {getWithParameters} from "../generalized/get-gen.js";
+import {postTo} from "../generalized/post-gen.js";
 
 const listContainer = document.getElementById("list-container");
 

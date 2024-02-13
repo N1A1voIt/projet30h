@@ -1,4 +1,4 @@
-import {getXhr} from "./detXhr.js";
+import {getXhr} from "./det-xhr.js";
 
 function urlToKeyValueMapping(urlString){
     var url = new URL(urlString);
