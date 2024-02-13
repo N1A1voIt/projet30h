@@ -112,12 +112,23 @@ function getBenefice($date_debut, $date_fin){
     $stmt = $dbh->prepare("SELECT price FROM 30h_the
                           ORDER BY id_the DESC
                           LIMIT 1");
-    $stmt->bindValue(":datyfin", $date_fin, PDO::PARAM_INT);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
     $vente =  getPoidsCueilletteTotal($date_debut, $date_fin) * $result['price'];
     return $vente - calculerDepenseTotaleEntreDates($date_debut, $date_fin);
+}
+function getVentes($date_debut, $date_fin){
+    $dbh = PDOConnect();
+    $stmt = $dbh->prepare("SELECT price FROM 30h_the
+                          ORDER BY id_the DESC
+                          LIMIT 1");
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $vente =  getPoidsCueilletteTotal($date_debut, $date_fin) * $result['price'];
+    return $vente;
 }
 ?>
