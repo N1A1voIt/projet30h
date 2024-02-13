@@ -14,8 +14,9 @@ updateRecord('30h_salaire_cueilleur', ['minimum' => $updated_minimum, 'mallus' =
 else{
     $minimum = $_POST['minimum'];
     $mallus = $_POST['mallus'];
+    $bonus = $_POST['bonus'];
     $daty = $_POST['daty'];
 
-    createRecord('30h_salaire_cueilleur',['minimum' => $updated_minimum, 'mallus' => $updated_mallus,'bonus' => $updated_bonus, 'daty' => $updated_daty]);
+    createRecord('30h_salaire_cueilleur',['minimum' => $minimum, 'mallus' => $mallus,'bonus' => $bonus, 'daty' => $daty]);
 }
 ?>

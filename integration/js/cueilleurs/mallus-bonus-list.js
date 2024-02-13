@@ -5,8 +5,8 @@ const listContainer = document.getElementById("list-container-mallus-bonus");
 const form = document.getElementById("mallus-form");
 
 
-var linkToDelete = "back/backoffice/crud-mallus-bonus/delete-mallus-bonus.php";
-var listParcelle = "back/backoffice/crud-mallus-bonus/select-mallus-bonus.php";
+var linkToDelete = "back/backoffice/crud-salaire-cueilleur/delete-salaire-cueuilleur.php";
+var listParcelle = "back/backoffice/crud-salaire-cueilleur/select-salaire-cueuilleur.php";
 
 getWithParameters(listParcelle,true).then(
     responseData => {
@@ -30,7 +30,7 @@ export function listerMallusBonus(responseData) {
                 row.appendChild(col);
             }
         }
-        var del_update = createEditDeleteButtons(responseData[i]['id_mallus_bonus'])
+        var del_update = createEditDeleteButtons(responseData[i]['id_salaire_cueilleur'])
         var td = document.createElement("td");
         td.appendChild(del_update);
         row.appendChild(td);
@@ -81,7 +81,7 @@ function createEditDeleteButtons(id) {
 
 function deleteRow(id) {
     var form = new FormData();
-    form.append("id_mallus_bonus",id);
+    form.append("id_salaire_cueilleur",id);
     postToFormDataVersion(linkToDelete,form,true).then(
         responseData => {
             console.log("deleted");
@@ -112,6 +112,6 @@ function update(id) {
     input.type = "hidden";
     input.value = id;
     input.id = "hidden-id";
-    input.name = "id_mallus_bonus";
+    input.name = "id_salaire_cueilleur";
     form.appendChild(input);
 }

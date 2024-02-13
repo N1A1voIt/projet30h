@@ -8,9 +8,9 @@ const form = document.getElementById("mallus-form");
 
 form.addEventListener("submit",function (event) {
     event.preventDefault();
-    postTo("back/backoffice/crud-mallus-bonus/update-mallus-bonus.php",form,true).then(
+    postTo("back/backoffice/crud-salaire-cueilleur/update-salaire-cueuilleur.php",form,true).then(
         responseData => {
-            getWithParameters("back/backoffice/crud-mallus-bonus/select-mallus-bonus.php",true).then(
+            getWithParameters("back/backoffice/crud-salaire-cueilleur/select-salaire-cueuilleur.php",true).then(
                 responseData => {
                     listContainer.innerHTML = "";
                     console.log(responseData)
