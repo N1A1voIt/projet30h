@@ -2,24 +2,20 @@ import {postTo} from "../generalized/post-gen.js";
 
 const form = document.getElementById("search-bar");
 const listContainer = document.getElementById("list-container");
-const before = document.getElementById("start");
-
-console.log(before.value);
-
-form.addEventListener("submit",(event)=>{
+form.addEventListener("submit",(event) => {
     event.preventDefault();
     postTo("back/frontoffice/traitement-salaire-cueilleur/salaire-cueilleur-treatment.php",form,true).then(
-           responseData => {
-               listContainer.innerHTML = "";
-               displaySalary(responseData)
-           }
-       ).catch(
-           error => {
-                console.log(error)
-           }
-       )
-});
-function displaySalary(responseData){
+        responseData => {
+            displayTab(responseData)
+        }
+    ).catch(
+        error => {
+            console.log(error);
+        }
+    )
+})
+function displayTab(responseData) {
+    listContainer.innerHTML = "";
     var tab = listContainer;
     for (let i = 0; i < responseData.length; i++) {
         var row = document.createElement("tr");

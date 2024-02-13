@@ -71,7 +71,7 @@
                             <div class="tab-content" id="v-pills-tabContent">
 
                                 <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-                                    <form action="#" class="search-property-1">
+                                    <form class="search-property-1" id="search-bar">
                                         <div class="row no-gutters">
                                             <div class="col-md d-flex">
                                                 <div class="form-group p-4">
@@ -83,7 +83,7 @@
                                                     <label for="start">Start date</label>
                                                     <div class="form-field">
                                                         <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                        <input id="start" type="text" class="form-control checkin_date" placeholder="Start Date">
+                                                        <input id="start" type="text" class="form-control checkin_date" name="date_debut" placeholder="Start Date">
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                     <label for="end">End date</label>
                                                     <div class="form-field">
                                                         <div class="icon"><span class="fa fa-calendar"></span></div>
-                                                        <input id="end" type="text" class="form-control checkout_date" placeholder="End Date">
+                                                        <input id="end" type="text" class="form-control checkout_date" name="date_fin" placeholder="End Date">
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                         <th>Amount</th>
                     </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
+                    <tbody class="table-border-bottom-0" id="list-container">
                     <tr>
                         <td>2023-09-01</td>
                         <td>Rakoto</td>
@@ -229,6 +229,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+
+<script type="module" src="integration/js/payment/payment-list.js"></script>
 
 </body>
 </html>

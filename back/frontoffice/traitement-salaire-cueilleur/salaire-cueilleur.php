@@ -28,13 +28,13 @@ function getPoidsTotalParCueilleur($id_cueuilleur, $date) {
 function getPoidsMontantProche() {
     $dbh = PDOConnect();
 
-    $stmt = $dbh->prepare("SELECT poids, montant FROM 30h_montant_salaire
-                          ORDER BY date_montant_salaire DESC
+    $stmt = $dbh->prepare("SELECT poid, montant FROM 30h_montant_salaire
+                          ORDER BY date_montant DESC
                           LIMIT 1");
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $poids = $result['poids'];
+    $poids = $result['poid'];
     $montant = $result['montant'];
 
     $dbh = null;
@@ -48,60 +48,82 @@ function getTableauValeurs($id_cueuilleur, $date) {
     $poidsTotal = getPoidsTotalParCueilleur($id_cueuilleur, $date);
     $montantProche = getPoidsMontantProche();
 
-    $stmt = $dbh->prepare("SELECT minimum, bonus, malus FROM 30h_salaire_cueilleur WHERE daty = :date");
+    $stmt = $dbh->prepare("SELECT minimum, bonus, mallus FROM 30h_salaire_cueilleur WHERE daty = :date");
     $stmt->bindValue(":date", changeFormat($date), PDO::PARAM_STR);
     $stmt->execute();
     $salaireInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $resultArray = null;
+    if ($salaireInfo === false){
 
-    $valeurs = 0;
-
-    if ($poidsTotal == $salaireInfo['minimum']) {
-        $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
-    } elseif ($poidsTotal > $salaireInfo['minimum']) {
-        $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
-        $valeurs2 = (($poidsTotal - $salaireInfo['minimum']) * $montantProche['montant']) / $montantProche['poids'] * $salaireInfo['bonus'];
-        $valeurs += $valeurs2;
-    } elseif ($poidsTotal < $salaireInfo['minimum']) {
-        $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
-        $valeurs2 = (($poidsTotal - $salaireInfo['minimum']) * $montantProche['montant']) / $montantProche['poids'] * $salaireInfo['malus'];
-        $valeurs += $valeurs2;
+    }
+    else{
+        if ($poidsTotal == $salaireInfo['minimum']) {
+            $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
+        } elseif ($poidsTotal > $salaireInfo['minimum']) {
+            $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
+            $valeurs2 = (($poidsTotal - $salaireInfo['minimum']) * $montantProche['montant']) / $montantProche['poids'] * $salaireInfo['bonus'];
+            $valeurs += $valeurs2;
+        } elseif ($poidsTotal < $salaireInfo['minimum']) {
+            $valeurs = ($poidsTotal * $montantProche['montant']) / $montantProche['poids'];
+            $valeurs2 = (($poidsTotal - $salaireInfo['minimum']) * $montantProche['montant']) / $montantProche['poids'] * $salaireInfo['mallus'];
+            $valeurs += $valeurs2;
+        }
+        $resultArray = array(
+            'date' => $date,
+            'id_cueuilleur' => $id_cueuilleur,
+            'poids' =>  $montantProche['poids'],
+            'bonus' => $salaireInfo['bonus'],
+            'mallus' => $salaireInfo['mallus'],
+            'valeurs' => $valeurs
+        );
     }
 
-    $resultArray = array(
-        'date' => $date,
-        'id_cueuilleur' => $id_cueuilleur,
-        'bonus' => $salaireInfo['bonus'],
-        'malus' => $salaireInfo['malus'],
-        'valeurs' => $valeurs
-    );
+
 
     $dbh = null;
 
     return $resultArray;
 }
 function getTableauValeursEntreDeuxDates($id_cueuilleur, $dateDebut, $dateFin) {
-    $dbh = PDOConnect();
-
     $sommeValeurs = 0;
+    $sommePoids = 0;
 
     $currentDate = $dateDebut;
-    while ($currentDate <= $dateFin) {
+    $newdate = date("Y/m/d", strtotime($currentDate));
+    $currentDate = str_replace('/','-', $newdate);
+    $currentDate = getTomorrow($currentDate);
+
+    $endDate = $dateFin;
+    $newdate = date("Y/m/d", strtotime($endDate));
+    $endDate = str_replace('/','-', $newdate);
+    $endDate = getTomorrow($endDate);
+
+    while ($currentDate <= $endDate) {
         $tableauValeurs = getTableauValeurs($id_cueuilleur, $currentDate);
         $sommeValeurs += $tableauValeurs['valeurs'];
-
-        $currentDate = date('Y-m-d', strtotime($currentDate . ' + 1 day'));
+        $sommePoids += $tableauValeurs['poids'];
+        print ("Is working:".$currentDate);
     }
-
     $tableauValeurs = getTableauValeurs($id_cueuilleur, $currentDate);
     $resultArray = array(
         'date' => $tableauValeurs['date'],
         'id_cueuilleur' => $id_cueuilleur,
+        'poids' => $sommePoids,
         'bonus' => $tableauValeurs['bonus'],
-        'malus' => $tableauValeurs['malus'],
+        'mallus' => $tableauValeurs['mallus'],
         'valeurs' => $sommeValeurs
     );
-    $dbh = null;
     return $resultArray;
+}
+
+
+
+
+
+function getTomorrow($date){
+    $dateObj = new DateTime(($date));
+    $dateObj->modify('+1 day');
+    return $dateObj->format('Y-m-d');
 }
 
 function getTableauValeursPourTousCueilleurs($date) {

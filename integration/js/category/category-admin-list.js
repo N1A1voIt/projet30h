@@ -6,6 +6,10 @@ const form = document.getElementById("depenses-form");
 
 var linkToDelete = "back/backoffice/crud-categorie-depense/delete-cat-dep.php";
 var listCategorieDepense = "back/backoffice/crud-categorie-depense/select-cat-dep.php";
+var listCategorieDepenseById = "back/backoffice/crud-categorie-depense/get-by-id-cat.php";
+
+
+const depense_category = document.getElementById("depense_category");
 
 getWithParameters(listCategorieDepense,true).then(
     responseData => {
@@ -110,5 +114,12 @@ function update(id) {
     input.value = id;
     input.id = "hidden-id";
     input.name = "id_cat_dep";
+    var formulaire = new FormData();
+    formulaire.append("id_cat_dep",id);
+    postToFormDataVersion(listCategorieDepenseById,formulaire,true).then(
+        responseData => {
+            depense_category.value = responseData[0].nom_cat_dep;
+        }
+    ).catch()
     form.appendChild(input);
 }
