@@ -70,7 +70,7 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
                 <a href="index.html" class="app-brand-link">
-                    <span class="app-brand-text demo menu-text fw-bolder ms-2">mada luxury tea</span>
+                    <span class="app-brand-text demo menu-text fw-bolder">mada luxury tea</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -82,7 +82,7 @@
 
             <ul class="menu-inner py-1">
                 <!-- Dashboard -->
-                <li class="menu-item active">
+                <li class="menu-item">
                     <a href="back_variete_the.html" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-collection"></i>
                         <div data-i18n="Analytics">Tea Variety</div>
@@ -112,14 +112,14 @@
                         <div data-i18n="Analytics">Salary per KG</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                     <a href="back_saisons.html" class="menu-link">
                         <i class="menu-icon tf-icons bx bxs-tree"></i>
                         <div data-i18n="Analytics">Seasons</div>
                     </a>
                 </li>
-                    </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
         </aside>
         <!-- / Menu -->
@@ -133,95 +133,71 @@
                 <!-- Content -->
 
                 <div class="container-xxl flex-grow-1 container-p-y">
-                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tea Variety Management</span></h4>
-
-                    <hr class="my-5" />
-
-                    <!-- Hoverable Table rows -->
-                    <div class="card">
-                        <h5 class="card-header">Tea Variety</h5>
-                        <div class="table-responsive text-nowrap">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Variety Name</th>
-                                    <th>Occupation</th>
-                                    <th>Rendement per ft</th>
-                                    <th>Price</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody class="table-border-bottom-0" id="list-container">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!--/ Hoverable Table rows -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Add new</span></h4>
-
-                        <!-- Basic Layout & Basic with Icons -->
-                        <div class="row">
-                            <!-- Basic Layout -->
-                            <div class="col-xxl">
-                                <div class="card mb-4">
-                                    <div class="card-header d-flex align-items-center justify-content-between">
-                                        <h5 class="mb-0">Add a new Tea Variety</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <form id="variety-form">
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="variety-name">Variety name</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" name="nom_the" id="variety-name" />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="occupation">Occupation</label>
-                                                <div class="col-sm-10">
-                                                    <input
-                                                            name="occupation"
-                                                            type="number" step="0.01"
-                                                            class="form-control"
-                                                            id="occupation"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="rendement_ft">Rendement per ft</label>
-                                                <div class="col-sm-10">
-                                                    <input
-                                                            type="number" step="0.01"
-                                                            id="rendement_ft"
-                                                            name="rendement"
-                                                            class="form-control phone-mask"
-                                                            aria-describedby="basic-default-phone"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label class="col-sm-2 col-form-label" for="price">Price</label>
-                                                <div class="col-sm-10">
-                                                    <input
-                                                            type="number" step="0.01"
-                                                            id="price"
-                                                            name="price"
-                                                            class="form-control phone-mask"
-                                                            aria-describedby="basic-default-phone"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-end">
-                                                <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-primary">Add</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Seasons Management</span></h4>
+                    <!-- Inline Checkboxes -->
+                    <div class="card-body">
+                        <div class="row gy-3">
+                            <div class="col-md">
+                                <small class="text-light fw-semibold d-block">Regenerative months</small>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="jan" value="1" />
+                                    <label class="form-check-label" for="jan">January</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="feb" value="2" />
+                                    <label class="form-check-label" for="feb">February</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="mar" value="3" />
+                                    <label class="form-check-label" for="mar">March</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="apr" value="4" />
+                                    <label class="form-check-label" for="apr">April</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="may" value="5" />
+                                    <label class="form-check-label" for="may">May</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="jun" value="6" />
+                                    <label class="form-check-label" for="jun">June</label>
+                                </div>
+                                <hr>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="jul" value="7" />
+                                    <label class="form-check-label" for="jul">July</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="aug" value="8" />
+                                    <label class="form-check-label" for="aug">August</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="sep" value="9" />
+                                    <label class="form-check-label" for="sep">September</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="oct" value="10" />
+                                    <label class="form-check-label" for="oct">October</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="nov" value="11" />
+                                    <label class="form-check-label" for="nov">November</label>
+                                </div>
+                                <div class="form-check form-check-inline mt-3">
+                                    <input name="months[]" class="form-check-input" type="checkbox" id="dec" value="12" />
+                                    <label class="form-check-label" for="dec">December</label>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-15">
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <!-- / Content -->
 
@@ -271,7 +247,5 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
-<script type="module" src="integration/js/varietea/bridge.js"></script>
-<script type="module" src="integration/js/varietea/varietea-list.js"></script>
 </body>
 </html>

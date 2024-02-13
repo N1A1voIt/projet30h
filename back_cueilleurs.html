@@ -100,6 +100,12 @@
                         <div data-i18n="Analytics">Salary per KG</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="back_saisons.html" class="menu-link">
+                        <i class="menu-icon tf-icons bx bxs-tree"></i>
+                        <div data-i18n="Analytics">Seasons</div>
+                    </a>
+                </li>
             </ul>
             </li>
             </ul>
@@ -149,7 +155,6 @@
                                 <div class="card mb-4">
                                     <div class="card-header d-flex align-items-center justify-content-between">
                                         <h5 class="mb-0">Add a new Cueilleur</h5>
-                                        <small class="text-muted float-end">Default label</small>
                                     </div>
                                     <div class="card-body">
                                         <form id="cueilleur-form">
@@ -179,6 +184,140 @@
                                             <div class="row justify-content-end">
                                                 <div class="col-sm-10">
                                                     <button type="submit" class="btn btn-primary">Add</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Wage Management</span></h4>
+
+                    <hr class="my-5" />
+                    <!-- Hoverable Table rows -->
+                    <div class="card">
+                        <h5 class="card-header">Minimum Wage</h5>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Minimum weight for a cueilleur</th>
+                                    <th>Bonus % </th>
+                                    <th>Mallus %</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>4</strong></td>
+                                    <td>5%</td>
+                                    <td>2%</td>
+                                    <td>2023-09-01</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                                                >
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-trash me-1"></i> Delete</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>4</strong></td>
+                                    <td>5%</td>
+                                    <td>2%</td>
+                                    <td>2023-09-01</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                                                >
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-trash me-1"></i> Delete</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>4</strong></td>
+                                    <td>5%</td>
+                                    <td>2%</td>
+                                    <td>2023-09-01</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
+                                                >
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                ><i class="bx bx-trash me-1"></i> Delete</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/ Hoverable Table rows -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Update Minimum Wage</span></h4>
+
+                        <!-- Basic Layout & Basic with Icons -->
+                        <div class="row">
+                            <!-- Basic Layout -->
+                            <div class="col-xxl">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <h5 class="mb-0">Update wage</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="min_weight">Minimum weight</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" step="0.01" class="form-control" id="min_weight" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="bonus">Bonus %</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" step="0.01" class="form-control" id="bonus" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="mallus">Mallus %</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" step="0.01" class="form-control" id="mallus" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label class="col-sm-2 col-form-label" for="date"> Date</label>
+                                                <div class="col-sm-10">
+                                                    <input type="date" class="form-control" id="date" />
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-end">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-primary">Save</button>
                                                 </div>
                                             </div>
                                         </form>
