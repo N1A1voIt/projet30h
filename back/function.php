@@ -42,6 +42,18 @@ function deleteRecord($tableName, $condition) {
         $dbh = null;
     }
 
+function readRecordsByid($tableName, $where) {
+        $dbh = PDOConnect();
+    
+        $stmt = $dbh->prepare("SELECT * FROM $tableName WHERE $where" );
+        $stmt->execute();
+    
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $dbh = null;
+        
+        return $result;
+    }
 //updateRecord('admin', ['mdp_admin' => 'newpassword', 'id_admin' => 1], 'nom_admin = "Admin1"');  
     function updateRecord($tableName, $data, $condition, $params = []) {
         $dbh = PDOConnect();

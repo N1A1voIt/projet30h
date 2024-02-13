@@ -14,7 +14,8 @@ CREATE TABLE 30h_the (
     id_the INT auto_increment PRIMARY KEY,
     nom_the VARCHAR(40),
     occupation FLOAT,
-    rendement FLOAT
+    rendement FLOAT,
+    price decimal(10,2)
 );
 
 CREATE TABLE 30h_parcelle (
@@ -87,3 +88,10 @@ INSERT INTO 30h_saison (nom_saison, valide) VALUES
 ('Novembre', FALSE),
 ('Décembre', FALSE);
 
+CREATE TABLE 30h_salaire_cueilleur(
+    id_salaire_cueilleur INT auto_increment PRIMARY KEY,
+    minimum FLOAT,
+    mallus FLOAT,
+    bonus FLOAT,
+    daty date
+);
