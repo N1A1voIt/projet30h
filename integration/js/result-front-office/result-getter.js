@@ -10,9 +10,9 @@ form.addEventListener("submit",(event) => {
     event.preventDefault();
     postTo("back/frontoffice/every-result.php",form,true).then(
         responseData => {
-            reste.innerHTML = responseData.poids_restant;
-            cueilli.innerHTML = responseData.poids_cueilli;
-            coutRevient.innerHTML = responseData.ca;
+            reste.innerHTML = responseData.poids_restant + " kg left";
+            cueilli.innerHTML = responseData.poids_cueilli +" kg";
+            coutRevient.innerHTML = responseData.ca+ "ar /kg";
         }
     ).catch(
         error => {
