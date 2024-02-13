@@ -1,8 +1,9 @@
 <?php
+include_once ('fonction-page-resultats.php');
 $date_debut = $_POST['date_debut'];
 $date_fin = $_POST['date_fin'];
 
-$poids_total_restant = getRestePoids($id_parcelle, $date_debut, $date_fin);
+$poids_total_restant = getRestePoidsTotal($date_debut, $date_fin);
 
 /*
  * TODO: getRestePoidsTotal

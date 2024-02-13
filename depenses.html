@@ -70,13 +70,16 @@
                         <div class="row block-9">
                             <form action="#" class="bg-light p-5 contact-form" id="depense-form">
                                 <div class="form-group">
-                                    <input id="date" type="text" class="form-control checkin_date" placeholder="Depense Date">
+                                    <input id="date" type="text" class="form-control checkin_date" name="date" placeholder="Depense Date">
                                 </div>
                                 <div class="form-group">
-                                    <input id="category" type="text" class="form-control" placeholder="Depense Category">
+                                    <label for="category">Depenses categories</label>
+                                    <select name="id_cat" id="category">
+                                        <option >Default value..</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <input id="montant" type="number" step="0.01" class="form-control" placeholder="Montant">
+                                    <input id="montant" type="number" step="0.01" class="form-control" name="montant" placeholder="Montant">
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Insert" class="btn btn-primary py-3 px-5">
@@ -163,5 +166,7 @@
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
 
+<script type="module" src="integration/js/depenses-front-office/depense-insert.js"></script>
+<script type="module" src="integration/js/depenses-front-office/depenses-form-builder.js"></script>
 </body>
 </html>

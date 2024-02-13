@@ -4,6 +4,8 @@ include("../../function.php");
 if(isset($_POST['id_depense'])){
     $id_depense_to_update = $_POST['id_depense'];
     $updated_date = $_POST['date'];
+    $newdate = date("Y/m/d", strtotime($updated_date));
+    $updated_date = str_replace('/','-', $newdate);
     $updated_id_cat = $_POST['id_cat'];
     $updated_montant = $_POST['montant'];
     
@@ -13,7 +15,8 @@ else{
     $date = $_POST['date'];
     $id_cat = $_POST['id_cat'];
     $montant = $_POST['montant'];
-    
+    $newdate = date("Y/m/d", strtotime($date));
+    $date = str_replace('/','-', $newdate);
     createRecord('30h_depense', ['date' => $date, 'id_cat' => $id_cat, 'montant' => $montant]);
 }
 ?>

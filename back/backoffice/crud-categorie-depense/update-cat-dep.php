@@ -1,5 +1,5 @@
 <?php
-include("function.php");
+include("../../function.php");
 
 
 if(isset($_POST['id_cat_dep'])){
@@ -10,7 +10,6 @@ if(isset($_POST['id_cat_dep'])){
 }
 else{
     $nom_cat_dep = $_POST['nom_cat_dep'];
-
     createRecord('30h_categorie_depense', ['nom_cat_dep' => $nom_cat_dep]);
 }
 

@@ -58,12 +58,23 @@ function getRestePoids($id_parcelle, $date_debut, $date_fin) {
     return calculerRendement($id_parcelle) - getPoidsCueillette($id_parcelle, $date_debut, $date_fin);
 }
 
+function getRestePoidsTotal($date_debut, $date_fin) {
+    $cuilletteRecords = readRecords("30h_parcelle");
+    $poidsTotalToutesParcelles = 0;
+
+    foreach ($cuilletteRecords as $record) {
+        $poidsTotalToutesParcelles += getRestePoids($record['id_parcelle'], $date_debut, $date_fin);
+    }
+    return $poidsTotalToutesParcelles;
+}
+
+
 function getPoidsCueilletteTotal( $date_debut, $date_fin) {
     $cuilletteRecords = readRecords("30h_cueillette");
     $poidsTotalToutesParcelles = 0;
 
     foreach ($cuilletteRecords as $record) {
-        $poidsTotalToutesParcelles += getPoidsCueillette($record['id_parcelle'], $record['date_debut'], $record['date_fin']);
+        $poidsTotalToutesParcelles += getPoidsCueillette($record['id_parcelle'], $date_debut, $date_fin);
     }
     return $poidsTotalToutesParcelles;
 }
@@ -79,10 +90,16 @@ function calculerRendementTotal() {
 }
 
 function getCoutRevientRendement($date_debut, $date_fin){
-    return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / calculerRendementTotal();
+    if(calculerRendementTotal() == 0){
+        return 0;
+    }
+    else return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / calculerRendementTotal();
 }
 
 function getCoutRevientRecolte($date_debut, $date_fin){
-    return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / getPoidsCueilletteTotal($date_debut,$date_fin);
+    if(getPoidsCueilletteTotal($date_debut, $date_fin) == 0){
+        return 0;
+    }
+    else return calculerDepenseTotaleEntreDates($date_debut, $date_fin) / getPoidsCueilletteTotal($date_debut,$date_fin);
 }
 ?>

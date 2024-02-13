@@ -62,18 +62,21 @@
                     <section class="ftco-section contact-section ftco-no-pt">
                         <div style="margin-top: 50px" class="container">
                             <div class="row block-9">
-                                    <form action="#" class="bg-light p-5 contact-form">
+                                <div id="error">
+
+                                </div>
+                                    <form action="#" id="form-login" class="bg-light p-5 contact-form">
                                         <div class="form-group">
-                                            <input id="username" type="text" class="form-control" placeholder="Your Username">
+                                            <input id="username" name="username" type="text" class="form-control" placeholder="Your Username">
                                         </div>
                                         <div class="form-group">
-                                            <input id="password" type="text" class="form-control" placeholder="Your Password">
+                                            <input id="password" name="password" type="text" class="form-control" placeholder="Your Password">
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" value="Login" class="btn btn-primary py-3 px-5">
                                         </div>
                                     </form>
-
+                                <a href="back_login.html">Admin</a>
                             </div>
                         </div>
                     </section>
@@ -151,6 +154,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
+
+
+<script type="module" src="integration/js/login-front-office/login.js"></script>
 
 </body>
 </html>
