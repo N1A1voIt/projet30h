@@ -1,4 +1,4 @@
-import {getXhr} from "./detXhr.js";
+import {getXhr} from "./det-xhr.js";
 
 function checkStatus(xhr, resolve, reject) {
     if (xhr.status === 200) {
@@ -32,6 +32,20 @@ export function postTo(path, form, async) {
         xhr.send(new FormData(form));
     });
 }
+export function postToFormDataVersion(path, form, async) {
+    return new Promise((resolve, reject) => {
+        var xhr = getXhr();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState ===  4) {
+                console.log("readyState:"+4);
+                checkStatus(xhr, resolve, reject);
+            }
+        };
+        xhr.open("POST", path, async);
+        xhr.send(form);
+    });
+}
+
 
 
 
