@@ -14,7 +14,8 @@ CREATE TABLE 30h_the (
     id_the INT auto_increment PRIMARY KEY,
     nom_the VARCHAR(40),
     occupation FLOAT,
-    rendement FLOAT
+    rendement FLOAT,
+    price DECIMAL(10,2)
 );
 
 CREATE TABLE 30h_parcelle (
@@ -48,7 +49,7 @@ CREATE TABLE 30h_montant_salaire (
     id_montant_salaire INT auto_increment PRIMARY KEY,
     poids FLOAT,
     montant FLOAT,
-    date DATE
+    date_montant DATE
 );
 
 CREATE TABLE 30h_user (

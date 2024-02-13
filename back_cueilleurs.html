@@ -209,7 +209,7 @@
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody class="table-border-bottom-0">
+                                <tbody class="table-border-bottom-0" id="list-container-mallus-bonus">
                                 <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>4</strong></td>
                                     <td>5%</td>
@@ -290,29 +290,29 @@
                                         <h5 class="mb-0">Update wage</h5>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form id="mallus-form">
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="min_weight">Minimum weight</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" step="0.01" class="form-control" id="min_weight" />
+                                                    <input type="number" step="0.01" class="form-control" name="poids_min" id="min_weight" />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="bonus">Bonus %</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" step="0.01" class="form-control" id="bonus" />
+                                                    <input type="number" step="0.01" name="bonus" class="form-control" id="bonus" />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="mallus">Mallus %</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" step="0.01" class="form-control" id="mallus" />
+                                                    <input type="number" step="0.01" name="mallus" class="form-control" id="mallus" />
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <label class="col-sm-2 col-form-label" for="date"> Date</label>
                                                 <div class="col-sm-10">
-                                                    <input type="date" class="form-control" id="date" />
+                                                    <input type="date" class="form-control" name="date" id="date" />
                                                 </div>
                                             </div>
                                             <div class="row justify-content-end">
@@ -378,5 +378,7 @@
 
 <script type="module" src="integration/js/cueilleurs/cueilleurs-list.js"></script>
 <script type="module" src="integration/js/cueilleurs/cueilleurs-insert.js"></script>
+<script type="module" src="integration/js/cueilleurs/mallus-bonus-insert.js"></script>
+<script type="module" src="integration/js/cueilleurs/mallus-bonus-list.js"></script>
 </body>
 </html>
